@@ -1,6 +1,6 @@
 {
   "name": "@aviral-zype/video-js-vast-plugin",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "main": "./dist/cjs/index.js",
   "module": "./dist/mjs/index.js",
   "license": "Apache-2.0",
@@ -73,7 +73,7 @@
   "description": "Open Source VAST plugin for VideoJS",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aviral-zype/video-js-vast-plugin.git"
+    "url": "git+https://github.com/aviral-zype/videojs-vast-plugins.git"
   },
   "keywords": [
     "vast",
@@ -93,13 +93,15 @@
     "single-video-element",
     "video",
     "streaming",
-    "advertiesment"
+    "advertiesment",
+    "zeasn",
+    "vmap"
   ],
   "author": "Aviral Gupta",
   "bugs": {
-    "url": "https://github.com/aviral-zype/video-js-vast-plugin/issues"
+    "url": "https://github.com/aviral-zype/videojs-vast-plugins/issues"
   },
-  "homepage": "https://github.com/aviral-zype/video-js-vast-plugin#readme",
+  "homepage": "https://github.com/aviral-zype/videojs-vast-plugins#readme",
   "directories": {
     "doc": "docs"
   },
