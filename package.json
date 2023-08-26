@@ -1,6 +1,6 @@
 {
   "name": "@aviral-zype/video-js-vast-plugin",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "main": "./dist/cjs/index.js",
   "module": "./dist/mjs/index.js",
   "license": "Apache-2.0",
@@ -46,9 +46,9 @@
     "transform:changelog": "node changelog.config.js --transform"
   },
   "dependencies": {
-    "@dailymotion/vast-client": "^4.0.1",
+    "@dailymotion/vast-client": "^5.0.0",
     "@dailymotion/vmap": "^3.3.1",
-    "videojs-contrib-ads": "^7.2.0"
+    "videojs-contrib-ads": "^7.3.2"
   },
   "devDependencies": {
     "@babel/node": "^7.20.7",

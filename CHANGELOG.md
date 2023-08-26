@@ -1,41 +1,4 @@
-<a name="1.1.3"></a>
+<a name="1.0.21"></a>
 
-
-<a name="1.1.2"></a>
-
-
-### Bug Fixes
-
-
-
-<a name="1.1.1"></a>
-
-
-
-<a name="1.1.0"></a>
-
-### Features
-
-
-<a name="1.0.1"></a>
-
-
-### Bug Fixes
-
-### Features
-
-
-<a name="1.0.1"></a>
-
-
-### Bug Fixes
-
-
-
-### Features
-
-
-
-
-
-
+New Feature
+ introducing an exciting addition: the Schedule Break API now supports adUrl. This means you can simply provide any VAST or VMAP Url, and the plugin will seamlessly handle it for you. This eliminates the necessity of manually providing vmapUrl or vastUrl. Enjoy a smoother experience with this automated process.

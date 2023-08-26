@@ -1,7 +1,5 @@
 import videojs from 'video.js';
 import './index';
-import Vast from './index';
-import { handleVMAP } from './features';
 
 /**
  * Search a param value in the current query string
@@ -14,10 +12,12 @@ globalThis.getURLParameter = getURLParameter;
 const player = videojs('my-video', { autoplay: false, muted: true });
 const vastAd = "https://cdn.theoplayer.com/demos/ads/vast/vast.xml"
 const vmapAd = "https://cdn.theoplayer.com/demos/ads/vmap/single-pre-mid-post-no-skip.xml"
+const skippableAd = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
 // Initialize the VAST plugin
 const options = {
-  vastUrl: vastAd,
+  // vastUrl: vastAd,
   vmapUrl: vmapAd,
+  // adUrl: skippableAd,
   debug: true,
 }
 const vastPlugin = player.vast(options);
@@ -36,11 +36,9 @@ player.on('ended', () => {
 });
 let oldtime = -1
 player.on('timeupdate', (e) => {
-  console.log(player.currentTime())
   let currentTime = player.currentTime()
   currentTime = Math.floor(currentTime)
-  if(oldtime !== currentTime && currentTime % 5 === 0){
-    console.log("I AM HERE")
+  if(oldtime !== currentTime && currentTime && currentTime % 5 === 0){
     oldtime = currentTime
     vastPlugin.schdeuleAdBreak(options)
   }
