@@ -2,7 +2,7 @@
 =======================
 This Plugin is stil in Under Development.
 
-The goal of this plugin is to allow videojs consumers to display VAST-based ads with the very same video element created by VideoJS.
+The goal of this plugin is to allow videojs consumers to display VAST-based or VMAP-based ads with the very same video element created by VideoJS.
 
 Contrary to the commonly used Google IMA for VideoJS, this plugin is not opinionated regarding the UI - i.e. it leaves to the consumer to manage changes in the UI to satisfy user needs.
 
@@ -52,12 +52,14 @@ const videoJsInstance = videojs('my-player', {
 });
 
 // Set up the VAST options
-const vastVjsOptions = {
-  vastUrl: 'https://points-to-vast-manifest.com/',
+// `Supported Options = vastUrl || vmapUrl || adUrl || verificationTimeout || addCtaClickZone || addSkipButton || debug || timeout || isLimitedTracking`
+
+const adsOptions = {
+  adUrl: 'https://points-to-vast-manifest.com/',
 };
 
 // Initialize the VAST plugin
-videoJsInstance.vast(vastVjsOptions);
+videoJsInstance.vast(adsOptions);
 
 // Do something with Ads events
 videojsInstance.on('vast.play', (event, data) => {
@@ -65,7 +67,7 @@ videojsInstance.on('vast.play', (event, data) => {
 });
 
 If you want to schdeule the Ad again as a midroll.
-//videoJsInstance.vast().schdeuleAdBreak(vastVjsOptions);
+//videoJsInstance.vast().schdeuleAdBreak(adsOptions);
 
 ```
 #### Implementing a CTA
