@@ -1,11 +1,12 @@
 import videojs from 'video.js';
 import 'videojs-contrib-ads';
-import { VASTClient, VASTTracker } from '@dailymotion/vast-client';
+import { VASTClient, VASTParser, VASTTracker } from '@dailymotion/vast-client';
 import {
   injectScriptTag, getLocalISOString, convertTimeOffsetToSeconds,
 } from './lib';
 import { playLinearAd, playNonLinearAd, playCompanionAd } from './modes';
-import { addIcons, handleVMAP, parseInlineVastData } from './features';
+import { addIcons, handleVMAP, handleVmapXml, parseInlineVastData } from './features';
+import { fetchAdUrl } from './lib/fetchAdUrl';
 
 const Plugin = videojs.getPlugin('plugin');
 
@@ -18,6 +19,7 @@ class Vast extends Plugin {
     const defaultOptions = {
       vastUrl: false,
       vmapUrl: false,
+      adUrl: false,
       verificationTimeout: 2000,
       addCtaClickZone: true,
       addSkipButton: true,
@@ -55,14 +57,33 @@ class Vast extends Plugin {
     this.schdeuleAdBreak(options)
   }
 
-  schdeuleAdBreak(options){
+  async schdeuleAdBreak(options){
     if(!this.player) return;
-
-    if (options.vmapUrl) {
+    if(options.adUrl){
+      const response = await fetchAdUrl(options.adUrl)
+      if(response.adType === "vmap"){
+        this.handleVmapXml(response.vmap)
+      } else if(response.adType === "vast")
+        this.vastXMLHandler(response.xml)
+    } else if (options.vmapUrl) {
       this.handleVMAP(options.vmapUrl);
     } else {
       this.vastHandler(options)
     }
+  }
+
+  vastXMLHandler(xml){
+    this.disablePostroll();
+    (async () => {
+      await this.handleVASTXml(xml, () => {
+        this.disablePreroll();
+      });
+      if (this.adsArray.length > 0) {
+        this.addEventsListeners();
+        // has to be done outside of handleVAST because not done at the same moment for VMAP case
+        this.player?.trigger('adsready');
+      }
+    })();
   }
 
   vastHandler(options){
@@ -80,7 +101,6 @@ class Vast extends Plugin {
   }
 
   disablePreroll() {
-    // console.log("DISAB:E PRERROLL", this.player)
     this.player?.trigger('nopreroll');
   }
 
@@ -124,6 +144,38 @@ class Vast extends Plugin {
       const response = await this.vastClient.get(vastUrl, {
         allowMultipleAds: true,
         resolveAll: true,
+      });
+      this.adsArray = response.ads ?? [];
+      if (this.adsArray.length === 0) {
+        onError?.();
+        // Deal with the error
+        const message = 'VastVjs: Empty VAST XML';
+        this.player.trigger('vast.error', {
+          message,
+          tag: vastUrl,
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      onError?.();
+      // Deal with the error
+      const message = 'VastVjs: Error while fetching VAST XML';
+      this.player.trigger('vast.error', {
+        message,
+        tag: vastUrl,
+      });
+    }
+  }
+
+  async handleVASTXml(vast, onError = null) {
+    // Now let's fetch some adsonp
+    this.vastClient = new VASTClient();
+    this.vastParser = new VASTParser()
+    try {
+      const response = await this.vastParser.parseVAST(vast, {
+        allowMultipleAds: true,
+        resolveAll: true,
+        url: this.options.adUrl
       });
       this.adsArray = response.ads ?? [];
       if (this.adsArray.length === 0) {
@@ -717,6 +769,7 @@ Vast.prototype.playNonLinearAd = playNonLinearAd;
 Vast.prototype.playCompanionAd = playCompanionAd;
 Vast.prototype.addIcons = addIcons;
 Vast.prototype.handleVMAP = handleVMAP;
+Vast.prototype.handleVmapXml = handleVmapXml;
 Vast.prototype.parseInlineVastData = parseInlineVastData;
 
 export default Vast;
