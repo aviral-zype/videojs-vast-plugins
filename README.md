@@ -67,7 +67,7 @@ videojsInstance.on('vast.play', (event, data) => {
 });
 
 If you want to schdeule the Ad again as a midroll.
-//videoJsInstance.vast().schdeuleAdBreak(adsOptions);
+//videoJsInstance.vast().scheduleAdBreak(adsOptions);
 
 ```
 #### Implementing a CTA

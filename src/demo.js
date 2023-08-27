@@ -20,12 +20,19 @@ const options = {
   adUrl: vmapAd,
   debug: true,
 }
-const vastPlugin = player.vast();
+
+const option2 = {
+  // vastUrl: vastAd,
+  // vmapUrl: vmapAd,
+  adUrl: vastAd,
+  debug: true,
+}
+player.vast(options);
 // console.log(player)
 // Add event listeners
 player.on('play', () => {
   console.log('Video started playing');
-  vastPlugin.schdeuleAdBreak(options)
+  player.vast(options)
 });
 
 player.on('pause', () => {
@@ -41,7 +48,7 @@ player.on('timeupdate', (e) => {
   currentTime = Math.floor(currentTime)
   if(oldtime !== currentTime && currentTime && currentTime % 5 === 0){
     oldtime = currentTime
-    vastPlugin.schdeuleAdBreak(options)
+    player.scheduleAdBreak(option2)
   }
 })
 player.on('adtimeupdate', (e) => {
@@ -53,5 +60,5 @@ player.on('adtimeupdate', (e) => {
 
 // You can add more event listeners as needed
 
-globalThis.adsPlugin = vastPlugin;
+// globalThis.adsPlugin = vastPlugin;
 globalThis.player = player;

@@ -15,6 +15,7 @@ class Vast extends Plugin {
     super(player, options);
     this.player = player;
 
+    const timeout = Boolean(options && (options["adUrl"] || options["vastUrl"] || options["vmapUrl"])) ? 5000 : 0
     // Load the options with default values
     const defaultOptions = {
       vastUrl: false,
@@ -24,7 +25,7 @@ class Vast extends Plugin {
       addCtaClickZone: true,
       addSkipButton: true,
       debug: false,
-      timeout: 5000,
+      timeout: timeout || 5000,
       isLimitedTracking: false,
     };
 
@@ -54,10 +55,14 @@ class Vast extends Plugin {
       console.error(e);
     } //This method will call to schdedule Ad Breaks
     this.debug("Plugin Initialised")
-    this.schdeuleAdBreak(options)
+    player.scheduleAdBreak = (vastVjsOptions) => {
+      this.debug("CONFIGURES?")
+      this.scheduleAdBreak(vastVjsOptions);
+    };
+    this.scheduleAdBreak(options)
   }
 
-  async schdeuleAdBreak(options){
+  async scheduleAdBreak(options){
     if(!this.player) return;
     this.options = {...this.options, ...options}
     if(this.options.adUrl){

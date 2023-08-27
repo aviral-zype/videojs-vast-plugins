@@ -1,3 +1,11 @@
+<a name="1.1.0"></a>
+
+New Feature
+  Added a new method on Ad break method. This can be activated like
+  `player.vast()`
+  `player.scheduleAdBreak(options)`
+  Fixed Spelling for scheduleAdBreak Method
+
 <a name="1.0.21"></a>
 
 Bug Fixes
