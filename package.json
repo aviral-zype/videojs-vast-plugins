@@ -1,5 +1,5 @@
 {
-  "name": "@aviral-zype/video-js-vast-plugin",
+  "name": "@video-js/ad-schdeule-plugin",
   "version": "1.1.0",
   "main": "./dist/cjs/index.js",
   "module": "./dist/mjs/index.js",
@@ -36,7 +36,6 @@
     "ci:changelog": "npm run changelog -- --same-file --infile CHANGELOG.md && npm run transform:changelog",
     "github_release": "babel-node github-release.mjs",
     "lint": "eslint ./src",
-    "publish": "npm run build && npm publish",
     "release": "standard-version",
     "serve": "serve -l 3000 docs",
     "start": "concurrently \"npm run serve\" \"watch --interval=1 'npm run bundle:demo' ./src/\"",
@@ -70,7 +69,7 @@
     "watch": "^0.13.0",
     "yargs": "^17.7.2"
   },
-  "description": "Open Source VAST plugin for VideoJS",
+  "description": "A VideoJS plugin for ad scheduling, open-source and available to schedule any advertisement at your desired moment.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aviral-zype/videojs-vast-plugins.git"
@@ -106,6 +105,6 @@
     "doc": "docs"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/aviralgupta"
+    "registry": "https://registry.npmjs.org/video-js"
   }
 }
