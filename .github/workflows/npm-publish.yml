@@ -16,7 +16,6 @@ jobs:
         with:
           node-version: 16
       - run: npm run build
-      # - run: npm test
 
   publish-npm:
     needs: build
@@ -30,4 +29,4 @@ jobs:
       - run: npm run build
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: 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
+          NODE_AUTH_TOKEN: "$NPM_PUBLISH_KEY"
