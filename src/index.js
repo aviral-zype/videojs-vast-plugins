@@ -59,16 +59,17 @@ class Vast extends Plugin {
 
   async schdeuleAdBreak(options){
     if(!this.player) return;
-    if(options.adUrl){
-      const response = await fetchAdUrl(options.adUrl)
+    this.options = {...this.options, ...options}
+    if(this.options.adUrl){
+      const response = await fetchAdUrl(this.options.adUrl)
       if(response.adType === "vmap"){
         this.handleVmapXml(response.vmap)
       } else if(response.adType === "vast")
         this.vastXMLHandler(response.xml)
-    } else if (options.vmapUrl) {
-      this.handleVMAP(options.vmapUrl);
-    } else {
-      this.vastHandler(options)
+    } else if (this.options.vmapUrl) {
+      this.handleVMAP(this.options.vmapUrl);
+    } else if(this.options.vastUrl) {
+      this.vastHandler(this.options)
     }
   }
 
@@ -105,6 +106,7 @@ class Vast extends Plugin {
   }
 
   disablePostroll() {
+    if(!this.player) return;
     this.player.on('readyforpostroll', () => {
       this.player?.trigger('nopostroll');
     });

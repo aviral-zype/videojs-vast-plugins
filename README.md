@@ -88,6 +88,7 @@ This plugin currently supports a handful of options that might help you customiz
 
 * **vastUrl** (string) - The URL where the plugin will fetch the VAST manifest from
 * **vmapUrl** (string) - The URL where the plugin will fetch the VMAP manifest from
+* **adUrl** (string) - The URL where the plugin will automatically detect and play VMAP or VAST manifest Ad
 * **isLimitedTracking** (boolean) - According to the Vast [documentation](https://interactiveadvertisingbureau.github.io/vast/vast4macros/vast4-macros-latest.html#macro-spec-limitadtracking), relates to the LIMITADTRACKING macro. ***Default : false***
 * **timeout** (milliseconds - int) - Max amount of time the plugin should wait for the manifest URL to respond and the assets to load. Will throw an error if this value is exceeded. ***Default: 5000***
 * **verificationTimeout** (milliseconds - int) - Max amount of time the plugin should wait for the OMID verification URLs to respond and the assets to load. ***Default: 2000***
@@ -118,6 +119,10 @@ Below you can find a list of the events currently supported. Just like the plugi
 * **vast.error** - Called if the plugin fails at some point in the process
 * **vast.click** - Called once the plugin succeffully registers a click in the call to action element associated with an ad - check the [Implementing a CTA](#implementing-a-cta) section for more details
 
+Additional Available Events: 
+**adplaying** | **adpause** | **adtimeupdate** | **advolumechange** | **adfullscreen** | **adtimeout** | **adstart** | **aderror** | **readyforpreroll** | **readyforpostroll** | **skip** | **adended** | **ended** |
+
+Call `player.ads.isAdPlaying()` to check if ad is playing or not.
 #### Runnning locally
 
 Running the plugin locally to further develop it is quite simple. Since the plugin repository does not contain any self contained development environment, we recommend using [**yalc**](https://www.npmjs.com/package/yalc) to publish the package in a local repository and then use [**yalc**](https://www.npmjs.com/package/yalc) again to install the plugin from the same local repository in in a dedicated development environment or even within the project you are working on.

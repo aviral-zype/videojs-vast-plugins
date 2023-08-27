@@ -16,15 +16,16 @@ const skippableAd = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923
 // Initialize the VAST plugin
 const options = {
   // vastUrl: vastAd,
-  vmapUrl: vmapAd,
-  // adUrl: skippableAd,
+  // vmapUrl: vmapAd,
+  adUrl: vmapAd,
   debug: true,
 }
-const vastPlugin = player.vast(options);
+const vastPlugin = player.vast();
 // console.log(player)
 // Add event listeners
 player.on('play', () => {
   console.log('Video started playing');
+  vastPlugin.schdeuleAdBreak(options)
 });
 
 player.on('pause', () => {
@@ -43,7 +44,11 @@ player.on('timeupdate', (e) => {
     vastPlugin.schdeuleAdBreak(options)
   }
 })
-
+player.on('adtimeupdate', (e) => {
+  console.log("XXX",player.ads.isAdPlaying())
+  console.log("A+ACA AD IS PLA?YIN")
+  // console.log(player)
+})
 // ...
 
 // You can add more event listeners as needed
