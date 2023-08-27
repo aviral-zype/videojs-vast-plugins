@@ -2,6 +2,7 @@
 
 Bug Fixes
  Fixed a bug where sometimes Ad scheduling was throwing an Error Message.
+ Updated Readme
 
 <a name="1.0.21"></a>
 
