@@ -1,6 +1,6 @@
 {
   "name": "@aviral-zype/video-js-vast-plugin",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "main": "./dist/cjs/index.js",
   "module": "./dist/mjs/index.js",
   "license": "Apache-2.0",
