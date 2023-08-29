@@ -1,6 +1,6 @@
  VideoJS VAST Plugin
 =======================
-The goal of this plugin is to allow videojs consumers to display VAST-based or VMAP-based ads with the very same video element created by VideoJS.
+The goal of this plugin is to allow videojs consumers to display VAST-based or VMAP-based ads with the very same video element created by VideoJS..
 
 Contrary to the commonly used Google IMA for VideoJS, this plugin is not opinionated regarding the UI - i.e. it leaves to the consumer to manage changes in the UI to satisfy user needs.
 
