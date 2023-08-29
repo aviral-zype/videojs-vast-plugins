@@ -1,6 +1,7 @@
  VideoJS VAST Plugin
 =======================
-The goal of this plugin is to allow videojs consumers to display VAST-based or VMAP-based ads with the very same video element created by VideoJS..
+
+The goal of this plugin is to allow videojs consumers to display VAST-based or VMAP-based ads with the very same video element created by VideoJS.
 
 Contrary to the commonly used Google IMA for VideoJS, this plugin is not opinionated regarding the UI - i.e. it leaves to the consumer to manage changes in the UI to satisfy user needs.
 
@@ -66,8 +67,6 @@ videojsInstance.on('vast.play', (event, data) => {
 
 If you want to schdeule the Ad again as a midroll.
 //videoJsInstance.vast().scheduleAdBreak(adsOptions);
-or use 
-//videoJsInstance.scheduleAdBreak(adsOptions); after once you use videoJsInstance.vast()
 ```
 #### Implementing a CTA
 
