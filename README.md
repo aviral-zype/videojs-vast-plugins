@@ -1,7 +1,5 @@
  VideoJS VAST Plugin
 =======================
-This Plugin is stil in Under Development.
-
 The goal of this plugin is to allow videojs consumers to display VAST-based or VMAP-based ads with the very same video element created by VideoJS.
 
 Contrary to the commonly used Google IMA for VideoJS, this plugin is not opinionated regarding the UI - i.e. it leaves to the consumer to manage changes in the UI to satisfy user needs.
@@ -33,8 +31,8 @@ Table of contents
 In order to start using the VAST Plugin you are supposed to have started a project that consumes VideosJS and have some basic knowledge of its basic concepts and API. To get started, install and include this package in your project's dependencies using npm or yarn:
 
 ```
-npm install --save @aviral-zype/video-js-vast-plugint-plugin
-yarn add @aviral-zype/video-js-vast-plugint-plugin
+npm install --save @aviral-zype/videojs-vast-plugins
+yarn add @aviral-zype/videojs-vast-plugins
 ```
 
 Now, import the plugin package and initialize it right after initializing your VideoJS instance. Here's a small snipet that of what it could look like:
@@ -42,7 +40,7 @@ Now, import the plugin package and initialize it right after initializing your V
 ```
 // Import the necessary packages
 import videojs from 'video.js';
-import '@aviral-zype/video-js-vast-plugint';
+import '@aviral-zype/videojs-vast-plugins';
 
 // Create VideoJS instance
 const videoJsInstance = videojs('my-player', {
@@ -68,7 +66,8 @@ videojsInstance.on('vast.play', (event, data) => {
 
 If you want to schdeule the Ad again as a midroll.
 //videoJsInstance.vast().scheduleAdBreak(adsOptions);
-
+or use 
+//videoJsInstance.scheduleAdBreak(adsOptions); after once you use videoJsInstance.vast()
 ```
 #### Implementing a CTA
 

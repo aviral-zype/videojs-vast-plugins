@@ -1,3 +1,9 @@
+<a name="1.2.0"></a>
+
+Bug Fix
+  Fixed a bug where sometimes ad was getting timeout at 0 seconds. not default time is 5000;
+  Updated Readme
+
 <a name="1.1.0"></a>
 
 New Feature

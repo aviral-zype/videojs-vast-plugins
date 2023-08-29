@@ -56,7 +56,6 @@ class Vast extends Plugin {
     } //This method will call to schdedule Ad Breaks
     this.debug("Plugin Initialised")
     player.scheduleAdBreak = (vastVjsOptions) => {
-      this.debug("CONFIGURES?")
       this.scheduleAdBreak(vastVjsOptions);
     };
     this.scheduleAdBreak(options)
@@ -64,7 +63,7 @@ class Vast extends Plugin {
 
   async scheduleAdBreak(options){
     if(!this.player) return;
-    this.options = {...this.options, ...options}
+    this.options = {...this.options, timeout: 5000, ...options}
     if(this.options.adUrl){
       const response = await fetchAdUrl(this.options.adUrl)
       if(response.adType === "vmap"){
