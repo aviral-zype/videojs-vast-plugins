@@ -1,5 +1,4 @@
-
-import VMAP from '@dailymotion/vmap';
+import VMAP from "../vmap";
 
 export const fetchAdUrl = (url) => new Promise((resolve, reject) => {
   const xhr = new XMLHttpRequest();
