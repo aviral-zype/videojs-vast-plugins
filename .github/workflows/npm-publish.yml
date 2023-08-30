@@ -30,8 +30,9 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm run build
       - run: npm publish
         env:
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-          NODE_AUTH_TOKEN: "$NPM_PUBLISH_KEY"
           ACTIONS_STEP_DEBUG: true  # Enable debug logging
