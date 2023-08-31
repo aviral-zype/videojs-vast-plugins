@@ -32,8 +32,8 @@ Table of contents
 In order to start using the VAST Plugin you are supposed to have started a project that consumes VideosJS and have some basic knowledge of its basic concepts and API. To get started, install and include this package in your project's dependencies using npm or yarn:
 
 ```
-npm install --save @aviral-zype/videojs-vast-plugins
-yarn add @aviral-zype/videojs-vast-plugins
+npm install --save @video-js/ad-schedule-plugin
+yarn add @video-js/ad-schedule-plugin
 ```
 
 Now, import the plugin package and initialize it right after initializing your VideoJS instance. Here's a small snipet that of what it could look like:
@@ -41,7 +41,7 @@ Now, import the plugin package and initialize it right after initializing your V
 ```
 // Import the necessary packages
 import videojs from 'video.js';
-import '@aviral-zype/videojs-vast-plugins';
+import '@video-js/ad-schedule-plugin';
 
 // Create VideoJS instance
 const videoJsInstance = videojs('my-player', {
@@ -131,7 +131,7 @@ Here's a small step-by-step to run the plugin locally.
 * Clone the repository with ```git clone https://github.com/aviral-zype/videojs-vast-plugins.git```
 * Install the plugin dependencies with ```npm install```
 * Run the plugin in watch mode with ```npm start```, leave this terminal open while you are working on the plugin's code
-* In your local project, run ```yalc add @aviral-zype/video-js-vast-plugin``` to install the plugin from your local repository
+* In your local project, run ```yalc add @video-js/ad-schedule-plugin``` to install the plugin from your local repository
 * Run your project normally, it will consume the local version of the plugin
 
 #### Credits
