@@ -25,6 +25,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Use secret
+        run: |
+          echo "Secret value: ${{ secrets.NPM_TOKEN }}"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
